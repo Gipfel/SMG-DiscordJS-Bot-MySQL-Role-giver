@@ -9,7 +9,6 @@ client.on("ready", () => {
   console.log("------------------------");
   console.log("---- SmG BOT ONLINE ----");
   console.log("------------------------");
-
 });
 
 var mysql = require('mysql');
@@ -22,7 +21,6 @@ var connection = mysql.createConnection({
 connection.connect();
 
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
 function generateString(length) {
   let result = ' ';
   const charactersLength = characters.length;
