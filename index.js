@@ -74,7 +74,7 @@ client.on("ready", () => {
       }
   
     });
-  }, 60000 * 15);
+  }, 3600000);
 });
 
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
