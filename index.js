@@ -5,12 +5,6 @@ const config = {
   token: process.env.TOKEN || "ODM0MTkxNTgxMjg0MTM5MDIw.YH9Tcw.-FcNGe3wqV2nH0RYOx1UL7oDKCk",
 };
 
-client.on("ready", () => {
-  console.log("------------------------");
-  console.log("---- SmG BOT ONLINE ----");
-  console.log("------------------------");
-});
-
 var mysql = require('mysql');
 var connection = mysql.createConnection({
   host: '45.131.108.156',
@@ -19,6 +13,69 @@ var connection = mysql.createConnection({
   database: 'webpannel'
 });
 connection.connect();
+
+client.on("ready", () => {
+  console.log("------------------------");
+  console.log("---- SmG BOT ONLINE ----");
+  console.log("------------------------");
+  setInterval(() => {
+    connection.query('SELECT * FROM accounts', function (err, rows, fields) {
+      if (err)
+        console.log('Connection result error ' + err);
+      else {
+        let i = 0;
+        while (i < rows.length) {
+          let dcid = rows[i].dcid;
+          if (dcid) {
+            let dbUser = message.guild.members.cache.get(dcid);
+            let perms = rows[i].perms;
+            switch (perms) {
+              case "R6Academy_Leader":
+                perms = "Rainbow6 Main Leader";
+                break;
+  
+              case "R6Academy_Player":
+                perms = "Rainbow6 Main";
+                break;
+  
+              case "R6Academy_Coach":
+                perms = "Rainbow6 Main Coach";
+                break;
+  
+              case "Streamer":
+                perms = "Twitch Streamer";
+                break;
+  
+              case "guest":
+                perms = null;
+                break;
+  
+              default:
+                perms = null;
+                break;
+            }
+            if (perms) {
+              var role = message.guild.roles.cache.find(r => r.name === perms);
+              dbUser.roles.add(role.id);
+            } else {
+              const roleLoopArray = ["Rainbow6 Main Leader", "Rainbow6 Main", "Rainbow6 Main Coach", "Twitch Streamer"];
+              let i = 0;
+              while (i < roleLoopArray.length) {
+                if (message.member.roles.cache.some(role => role.name === roleLoopArray[i])) {
+                  var removalRole = message.guild.roles.cache.find(r => r.name === roleLoopArray[i]);
+                  dbUser.roles.remove(removalRole.id);
+                }
+                i++;
+              }
+            }
+          }
+          i++;
+        }
+      }
+  
+    });
+  }, 60000 * 15);
+});
 
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 function generateString(length) {
@@ -32,62 +89,6 @@ function generateString(length) {
 
 client.on("message", message => {
   if (message.author.bot) return;
-
-  connection.query('SELECT * FROM accounts', function (err, rows, fields) {
-    if (err)
-      console.log('Connection result error ' + err);
-    else {
-      let i = 0;
-      while (i < rows.length) {
-        let dcid = rows[i].dcid;
-        if (dcid) {
-          let dbUser = message.guild.members.cache.get(dcid);
-          let perms = rows[i].perms;
-          switch (perms) {
-            case "R6Academy_Leader":
-              perms = "Rainbow6 Main Leader";
-              break;
-
-            case "R6Academy_Player":
-              perms = "Rainbow6 Main";
-              break;
-
-            case "R6Academy_Coach":
-              perms = "Rainbow6 Main Coach";
-              break;
-
-            case "Streamer":
-              perms = "Twitch Streamer";
-              break;
-
-            case "guest":
-              perms = null;
-              break;
-
-            default:
-              perms = null;
-              break;
-          }
-          if (perms) {
-            var role = message.guild.roles.cache.find(r => r.name === perms);
-            dbUser.roles.add(role.id);
-          } else {
-            const roleLoopArray = ["Rainbow6 Main Leader", "Rainbow6 Main", "Rainbow6 Main Coach", "Twitch Streamer"];
-            let i = 0;
-            while (i < roleLoopArray.length) {
-              if (message.member.roles.cache.some(role => role.name === roleLoopArray[i])) {
-                var removalRole = message.guild.roles.cache.find(r => r.name === roleLoopArray[i]);
-                dbUser.roles.remove(removalRole.id);
-              }
-              i++;
-            }
-          }
-        }
-        i++;
-      }
-    }
-
-  });
 
   if (!message.content.startsWith(config.prefix)) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
