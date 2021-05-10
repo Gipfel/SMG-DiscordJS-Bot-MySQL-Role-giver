@@ -91,6 +91,7 @@ function generateString(length) {
 client.on("message", message => {
   if (message.author.bot) return;
 
+  // SmG Server
   if (message.guild.id === "714862777130549310" && message.channel.id === "776586730203512853") {
     const {
       member,
@@ -99,8 +100,14 @@ client.on("message", message => {
 
     const target = mentions.roles.first();
     const giiipfel = "287527912721219584";
-    if (target && target.id === "841328353285242900") {
-      client.users.cache.get(giiipfel).send("Ey! SmG wartet auf dich! BRUDAAA MACH HINNE SONST GIBTS KLATSCHE VON VIO !");
+    const gipfelRole = "841328353285242900"
+    const luki = "295907115372118016";
+    const lukiRole = "775470853588648007";
+    if (target) {
+      if (target.id === gipfelRole)
+        client.users.cache.get(giiipfel).send("Ey! SmG wartet auf dich! BRUDAAA MACH HINNE SONST GIBTS KLATSCHE VON VIO !");
+      if (target.id === lukiRole)
+        client.users.cache.get(luki).send("Ey! SmG wartet auf dich! BRUDAAA MACH HINNE SONST GIBTS KLATSCHE VON VIO !");
     }
   }
 
