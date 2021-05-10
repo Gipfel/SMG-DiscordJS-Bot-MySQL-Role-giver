@@ -33,23 +33,23 @@ client.on("ready", () => {
               case "R6Academy_Leader":
                 perms = "Rainbow6 Main Leader";
                 break;
-  
+
               case "R6Academy_Player":
                 perms = "Rainbow6 Main";
                 break;
-  
+
               case "R6Academy_Coach":
                 perms = "Rainbow6 Main Coach";
                 break;
-  
+
               case "Streamer":
                 perms = "Twitch Streamer";
                 break;
-  
+
               case "guest":
                 perms = null;
                 break;
-  
+
               default:
                 perms = null;
                 break;
@@ -72,12 +72,13 @@ client.on("ready", () => {
           i++;
         }
       }
-  
+
     });
   }, 3600000);
 });
 
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
 function generateString(length) {
   let result = ' ';
   const charactersLength = characters.length;
@@ -90,9 +91,20 @@ function generateString(length) {
 client.on("message", message => {
   if (message.author.bot) return;
 
+  if (message.guild.id === "829371147128668211" && message.channel.id === "838775489043628052") {
+    const target = mentions.users.first();
+    const targetMember = message.guild.roles.cache.get(target.id);
+    const giiipfel = "287527912721219584";
+    if (target && targetMember === "841328353285242900")
+      giiipfel.send("Ey! SmG wartet auf dich! BRUDAAA MACH HINNE SONST GIBTS KLATSCHE VON VIO !");
+  }
+
   if (!message.content.startsWith(config.prefix)) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift();
+
+  if (command === "status" && message.author.hasPermission("ADMINISTRATOR"))
+    message.channel.send("Everything up and running! v1.0");
 
   if (command == "link" || command == "verify") {
     let clientSecret = message.content.split(" ").slice(1);
@@ -168,7 +180,7 @@ client.on("message", message => {
 connection.query('SELECT * FROM accounts', function (err, rows, fields) {
   if (err)
     console.log('Connection result error ' + err);
-  else 
+  else
     console.log(rows);
 });
 
