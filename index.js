@@ -91,20 +91,22 @@ function generateString(length) {
 client.on("message", message => {
   if (message.author.bot) return;
 
-  if (message.guild.id === "829371147128668211" && message.channel.id === "838775489043628052") {
-    const target = mentions.users.first();
-    const targetMember = message.guild.roles.cache.get(target.id);
+  if (message.guild.id === "714862777130549310" && message.channel.id === "776586730203512853") {
+    const {
+      member,
+      mentions
+    } = message;
+
+    const target = mentions.roles.first();
     const giiipfel = "287527912721219584";
-    if (target && targetMember === "841328353285242900")
-      giiipfel.send("Ey! SmG wartet auf dich! BRUDAAA MACH HINNE SONST GIBTS KLATSCHE VON VIO !");
+    if (target && target.id === "841328353285242900") {
+      client.users.cache.get(giiipfel).send("Ey! SmG wartet auf dich! BRUDAAA MACH HINNE SONST GIBTS KLATSCHE VON VIO !");
+    }
   }
 
   if (!message.content.startsWith(config.prefix)) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift();
-
-  if (command === "status" && message.author.hasPermission("ADMINISTRATOR"))
-    message.channel.send("Everything up and running! v1.0");
 
   if (command == "link" || command == "verify") {
     let clientSecret = message.content.split(" ").slice(1);
