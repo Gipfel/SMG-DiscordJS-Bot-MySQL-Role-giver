@@ -18,7 +18,7 @@ client.on("ready", () => {
   console.log("------------------------");
   console.log("---- SmG BOT ONLINE ----");
   console.log("------------------------");
-  bot.user.setPresence({
+  client.user.setPresence({
     status: 'online',
     activity: {
         name: '#WeMakeYouSpeechless',
