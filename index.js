@@ -21,7 +21,7 @@ client.on("ready", () => {
   client.user.setPresence({
     status: 'online',
     activity: {
-        name: '#WeMakeYouSpeechless',
+        name: '#WeMakeUSpeechless',
         type: 'STREAMING',
         url: 'https://www.twitch.tv/viostreamt/'
     }
