@@ -93,7 +93,10 @@ function generateString(length) {
 
 client.on("messageUpdate", message => {
   if (message.guild.id === "714862777130549310" && message.channel.id === "776586730203512853") {
-    const mentions = message;
+    const {
+      member,
+      mentions
+    } = message;
 
     const target = mentions.roles.first();
     const giiipfel = "287527912721219584";
@@ -114,7 +117,10 @@ client.on("message", message => {
 
   // SmG Server
   if (message.guild.id === "714862777130549310" && message.channel.id === "776586730203512853") {
-    const mentions = message;
+    const {
+      member,
+      mentions
+    } = message;
 
     const target = mentions.roles.first();
     const giiipfel = "287527912721219584";
