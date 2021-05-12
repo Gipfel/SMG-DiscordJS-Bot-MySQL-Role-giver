@@ -19,7 +19,7 @@ client.on("ready", () => {
   console.log("---- SmG BOT ONLINE ----");
   console.log("------------------------");
   client.user.setActivity(`#WeMakeYouSpeechless`, {
-    type: 'CUSTOM_STATUS'
+    type: 'STREAMING'
   })
   setInterval(() => {
     connection.query('SELECT * FROM accounts', function (err, rows, fields) {
