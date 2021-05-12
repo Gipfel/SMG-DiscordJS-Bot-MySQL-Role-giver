@@ -91,15 +91,9 @@ function generateString(length) {
   return result;
 }
 
-client.on("message", message => {
-  if (message.author.bot) return;
-
-  // SmG Server
+client.on("messageUpdate", message => {
   if (message.guild.id === "714862777130549310" && message.channel.id === "776586730203512853") {
-    const {
-      member,
-      mentions
-    } = message;
+    const mentions = message;
 
     const target = mentions.roles.first();
     const giiipfel = "287527912721219584";
@@ -108,9 +102,30 @@ client.on("message", message => {
     const lukiRole = "775470853588648007";
     if (target) {
       if (target.id === gipfelRole)
-        client.users.cache.get(giiipfel).send("Ey! SmG wartet auf dich! BRUDAAA MACH HINNE SONST GIBTS KLATSCHE VON VIO !");
+        client.users.cache.get(giiipfel).send("Eine Aufgabe, die dir zugeteilt wurde, wurde bearbeitet !");
       if (target.id === lukiRole)
-        client.users.cache.get(luki).send("Ey! SmG wartet auf dich! BRUDAAA MACH HINNE SONST GIBTS KLATSCHE VON VIO !");
+        client.users.cache.get(luki).send("Eine Aufgabe, die dir zugeteilt wurde, wurde bearbeitet !");
+    }
+  }
+})
+
+client.on("message", message => {
+  if (message.author.bot) return;
+
+  // SmG Server
+  if (message.guild.id === "714862777130549310" && message.channel.id === "776586730203512853") {
+    const mentions = message;
+
+    const target = mentions.roles.first();
+    const giiipfel = "287527912721219584";
+    const gipfelRole = "775471626904010793"
+    const luki = "295907115372118016";
+    const lukiRole = "775470853588648007";
+    if (target) {
+      if (target.id === gipfelRole)
+        client.users.cache.get(giiipfel).send("Jemand hat dir auf dem SmG Discord im chief-chat eine Aufgabe gegeben !");
+      if (target.id === lukiRole)
+        client.users.cache.get(luki).send("Jemand hat dir auf dem SmG Discord im chief-chat eine Aufgabe gegeben !");
     }
   }
 
