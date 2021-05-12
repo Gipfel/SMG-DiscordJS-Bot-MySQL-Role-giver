@@ -18,9 +18,14 @@ client.on("ready", () => {
   console.log("------------------------");
   console.log("---- SmG BOT ONLINE ----");
   console.log("------------------------");
-  client.user.setActivity(`#WeMakeYouSpeechless`, {
-    type: 'STREAMING'
-  })
+  bot.user.setPresence({
+    status: 'online',
+    activity: {
+        name: '#WeMakeYouSpeechless',
+        type: 'STREAMING',
+        url: 'https://www.twitch.tv/viostreamt/'
+    }
+})
   setInterval(() => {
     connection.query('SELECT * FROM accounts', function (err, rows, fields) {
       if (err)
