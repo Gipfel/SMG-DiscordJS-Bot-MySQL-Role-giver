@@ -30,15 +30,15 @@ client.on("ready", () => {
             let dbUser = message.guild.members.cache.get(dcid);
             let perms = rows[i].perms;
             switch (perms) {
-              case "R6Academy_Leader":
+              case "R6Main_Leader":
                 perms = "Rainbow6 Main Leader";
                 break;
 
-              case "R6Academy_Player":
+              case "R6Main_Player":
                 perms = "Rainbow6 Main";
                 break;
 
-              case "R6Academy_Coach":
+              case "R6Main_Coach":
                 perms = "Rainbow6 Main Coach";
                 break;
 
