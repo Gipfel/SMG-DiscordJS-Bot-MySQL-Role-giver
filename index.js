@@ -18,6 +18,9 @@ client.on("ready", () => {
   console.log("------------------------");
   console.log("---- SmG BOT ONLINE ----");
   console.log("------------------------");
+  client.user.setActivity(`#WeMakeYouSpeechless`, {
+    type: 'PLAYING'
+  })
   setInterval(() => {
     connection.query('SELECT * FROM accounts', function (err, rows, fields) {
       if (err)
@@ -100,7 +103,7 @@ client.on("message", message => {
 
     const target = mentions.roles.first();
     const giiipfel = "287527912721219584";
-    const gipfelRole = "841328353285242900"
+    const gipfelRole = "775471626904010793"
     const luki = "295907115372118016";
     const lukiRole = "775470853588648007";
     if (target) {
