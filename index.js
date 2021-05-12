@@ -218,7 +218,7 @@ connection.query('SELECT * FROM accounts', function (err, rows, fields) {
   if (err)
     console.log('Connection result error ' + err);
   else
-    console.log(rows);
+    console.log("Database synced, up and running !");
 });
 
 client.login(config.token);
