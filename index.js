@@ -91,6 +91,8 @@ function generateString(length) {
   return result;
 }
 
+const editedMessage = "Eine deiner Aufgaben wurde bearbeitet !";
+
 client.on("messageUpdate", message => {
   if (message.guild.id === "714862777130549310" && message.channel.id === "776586730203512853") {
     const {
@@ -105,12 +107,14 @@ client.on("messageUpdate", message => {
     const lukiRole = "775470853588648007";
     if (target) {
       if (target.id === gipfelRole)
-        client.users.cache.get(giiipfel).send("Eine Aufgabe, die dir zugeteilt wurde, wurde bearbeitet !");
+        client.users.cache.get(giiipfel).send(editedMessage);
       if (target.id === lukiRole)
-        client.users.cache.get(luki).send("Eine Aufgabe, die dir zugeteilt wurde, wurde bearbeitet !");
+        client.users.cache.get(luki).send(editedMessage);
     }
   }
 })
+
+const addedMessage = "Dir wurde auf dem SmG Discord (im chief-chat) eine Aufgabe zugeteilt !";
 
 client.on("message", message => {
   if (message.author.bot) return;
@@ -129,9 +133,9 @@ client.on("message", message => {
     const lukiRole = "775470853588648007";
     if (target) {
       if (target.id === gipfelRole)
-        client.users.cache.get(giiipfel).send("Jemand hat dir auf dem SmG Discord im chief-chat eine Aufgabe gegeben !");
+        client.users.cache.get(giiipfel).send(addedMessage);
       if (target.id === lukiRole)
-        client.users.cache.get(luki).send("Jemand hat dir auf dem SmG Discord im chief-chat eine Aufgabe gegeben !");
+        client.users.cache.get(luki).send(addedMessage);
     }
   }
 
